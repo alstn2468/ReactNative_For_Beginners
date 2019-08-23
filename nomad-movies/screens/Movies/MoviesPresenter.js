@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const MoviesPresenter = () => <Text>Movies</Text>;
 
 MoviesPresenter.propTypes = {
-  loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired
 };
 
 export default MoviesPresenter;

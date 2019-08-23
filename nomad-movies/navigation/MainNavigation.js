@@ -4,24 +4,24 @@ import TabNavigation from "./TabNavigation";
 import DetailScreen from "../screens/Detail";
 
 const MainNavigation = createStackNavigator(
-  {
-    Tabs: {
-      screen: TabNavigation,
-      navigationOptions: {
-        header: null
-      }
+    {
+        Tabs: {
+            screen: TabNavigation,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Detail: {
+            screen: DetailScreen,
+            navigationOptions: {
+                ...headerStyles
+            }
+        }
     },
-    Detail: {
-      screen: DetailScreen,
-      navigationOptions: {
-        ...headerStyles
-      }
+    {
+        headerMode: "screen",
+        headerBackTitleVisible: false
     }
-  },
-  {
-    headerMode: "screen",
-    headerBackTitleVisible: false
-  }
 );
 
 export default createAppContainer(MainNavigation);
