@@ -3,15 +3,15 @@ import { Platform } from "react-native";
 import { BG_COLOR } from "../constants/Colors";
 import { createStack } from "./config";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
-import MovieScreen from "../screens/Movie";
+import MoviesScreen from "../screens/Movies";
 import TVScreen from "../screens/TV";
 import SearchScreen from "../screens/Search";
 import TabBarIcon from "../components/TabBarIcon";
 
 const TabNavigation = createBottomTabNavigator(
   {
-    Movie: {
-      screen: createStack(MovieScreen, "Movies"),
+    Movies: {
+      screen: createStack(MoviesScreen, "Movies"),
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <TabBarIcon
