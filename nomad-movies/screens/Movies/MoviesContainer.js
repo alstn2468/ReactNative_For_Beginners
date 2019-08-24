@@ -4,7 +4,7 @@ import { movies } from "../../api";
 
 export default class extends React.Component {
     state = {
-        loading: false,
+        loading: true,
         upcoming: null,
         popular: null,
         nowPlaying: null,
@@ -13,9 +13,17 @@ export default class extends React.Component {
 
     async componentDidMount() {
         try {
-            const upcoming = await movies.getUpcoming();
-            const popular = await movies.getPopular();
-            const nowPlaying = await movies.getNowPlaying();
+            const {
+                data: { results: upcoming }
+            } = await movies.getUpcoming();
+            const {
+                data: { results: popular }
+            } = await movies.getPopular();
+            const {
+                data: { results: nowPlaying }
+            } = await movies.getNowPlaying();
+
+            this.setState({ upcoming, popular, nowPlaying });
         } catch {
             this.setState({ error: "Can't get movies" });
         } finally {
@@ -24,7 +32,16 @@ export default class extends React.Component {
     }
 
     render() {
-        const { loading } = this.state;
-        return <MoviesPresenter loading={loading} />;
+        const { loading, upcoming, popular, nowPlaying, error } = this.state;
+
+        return (
+            <MoviesPresenter
+                loading={loading}
+                upcoming={upcoming}
+                popular={popular}
+                nowPlaying={nowPlaying}
+                error={error}
+            />
+        );
     }
 }
