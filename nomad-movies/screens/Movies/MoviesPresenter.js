@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../components/Loader";
 import MovieSlider from "../../components/MovieSlider";
+import { BG_COLOR } from "../../constants/Colors";
 
-const Container = styled.ScrollView``;
+const Container = styled.ScrollView`
+    background-color: ${BG_COLOR};
+`;
 
 const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
     loading ? (
