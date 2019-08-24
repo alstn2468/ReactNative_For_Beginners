@@ -14,9 +14,9 @@ const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
 
 MoviesPresenter.propTypes = {
     loading: PropTypes.bool.isRequired,
-    upcoming: PropTypes.arrayOf.isRequired,
-    popular: PropTypes.arrayOf.isRequired,
-    nowPlaying: PropTypes.arrayOf.isRequired,
+    upcoming: PropTypes.array,
+    popular: PropTypes.array,
+    nowPlaying: PropTypes.array,
     error: PropTypes.string
 };
 
