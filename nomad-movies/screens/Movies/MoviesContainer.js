@@ -18,11 +18,11 @@ export default class extends React.Component {
                 data: { results: popular }
             } = await movies.getPopular());
             ({
-                data: { results: topRated }
-            } = await movies.topRated());
+                data: { results: upcoming }
+            } = await movies.getUpcoming());
             ({
-                data: { results: airingToday }
-            } = await movies.airingToday());
+                data: { results: nowPlaying }
+            } = await movies.getNowPlaying());
         } catch (error) {
             console.log(error);
             error = "Can't get Movies.";
