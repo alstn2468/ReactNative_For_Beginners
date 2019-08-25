@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 import { BG_COLOR, GREY_COLOR } from "../../constants/Colors";
 import Layout from "../../constants/Layout";
+import Section from "../../components/Section";
+import MovieItem from "../../components/MovieItem";
 
 const Container = styled.View`
     background-color: ${BG_COLOR};
@@ -23,38 +26,92 @@ const Input = styled.TextInput`
     text-align: center;
 `;
 
+const SearchResults = styled.View`
+    margin-top: 20px;
+`;
+
 const SearchPresenter = ({
     loading,
     tvResults,
-    movieResult,
+    movieResults,
+    error,
     searchTerm,
     onSubmitEditing,
     handleSearchUpdate
-}) =>
-    loading ? (
-        <Loader />
-    ) : (
-        <Container>
-            <InputContainer>
-                <Input
-                    value={searchTerm}
-                    returnKeyType="search"
-                    onChangeText={handleSearchUpdate}
-                    onSubmitEditing={onSubmitEditing}
-                    placeholder="Search movies and tv"
-                    placeholderTextColor={GREY_COLOR}
-                />
-            </InputContainer>
-        </Container>
-    );
+}) => (
+    <Container>
+        <InputContainer>
+            <Input
+                value={searchTerm}
+                returnKeyType="search"
+                onChangeText={handleSearchUpdate}
+                onSubmitEditing={onSubmitEditing}
+                placeholder="Search movies and tv"
+                placeholderTextColor={GREY_COLOR}
+            />
+        </InputContainer>
+        <SearchResults>
+            {loading ? (
+                <Loader />
+            ) : (
+                <>
+                    {movieResults ? (
+                        movieResults.length > 0 ? (
+                            <Section title="Movie Results">
+                                {movieResults
+                                    .filter(movie => movie.poster_path !== null)
+                                    .map(movie => (
+                                        <MovieItem
+                                            key={movie.id}
+                                            id={movie.id}
+                                            posterPhoto={movie.poster_path}
+                                            title={movie.title}
+                                            overview={movie.overview}
+                                            voteAvg={movie.vote_average}
+                                        />
+                                    ))}
+                            </Section>
+                        ) : null
+                    ) : null}
+                    {tvResults ? (
+                        tvResults.length > 0 ? (
+                            <Section title="TV Results">
+                                {tvResults
+                                    .filter(tv => tv.poster_path !== null)
+                                    .map(tv => (
+                                        <MovieItem
+                                            key={tv.id}
+                                            id={tv.id}
+                                            posterPhoto={tv.poster_path}
+                                            title={tv.name}
+                                            voteAvg={tv.vote_average}
+                                        />
+                                    ))}
+                            </Section>
+                        ) : null
+                    ) : null}
+                    {error ? (
+                        <Message color="#e74c3c" text={error} />
+                    ) : tvResults &&
+                      movieResults &&
+                      tvResults.length === 0 &&
+                      movieResults.length === 0 ? (
+                        <Message color={GREY_COLOR} text="Nothing Found" />
+                    ) : null}
+                </>
+            )}
+        </SearchResults>
+    </Container>
+);
 
 SearchPresenter.propTypes = {
     loading: PropTypes.bool.isRequired,
     handleSearchUpdate: PropTypes.func.isRequired,
     onSubmitEditing: PropTypes.func.isRequired,
+    error: PropTypes.string,
     searchTerm: PropTypes.string,
     tvResults: PropTypes.array,
-    movieResult: PropTypes.array
+    movieResults: PropTypes.array
 };
 
 export default SearchPresenter;
