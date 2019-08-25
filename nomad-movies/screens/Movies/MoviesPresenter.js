@@ -1,11 +1,11 @@
 import React from "react";
-import { Text } from "react-native";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "../../components/Loader";
+import MovieItem from "../../components/MovieItem";
 import MovieSlider from "../../components/MovieSlider";
-import { BG_COLOR } from "../../constants/Colors";
 import Section from "../../components/Section";
+import { BG_COLOR } from "../../constants/Colors";
 
 const Container = styled.ScrollView`
     background-color: ${BG_COLOR};
@@ -18,7 +18,19 @@ const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
         <Container>
             {nowPlaying ? <MovieSlider movies={nowPlaying} /> : null}
             {upcoming ? (
-                <Section movies={upcoming} title="Upcoming Movies" />
+                <Section title="Upcoming Movies">
+                    {upcoming
+                        .filter(movie => movie.poster_path !== null)
+                        .map(movie => (
+                            <MovieItem
+                                key={movie.id}
+                                id={movie.id}
+                                posterPhoto={movie.poster_path}
+                                title={movie.title}
+                                voteAvg={movie.vote_average}
+                            />
+                        ))}
+                </Section>
             ) : null}
         </Container>
     );

@@ -5,10 +5,14 @@ import MoviePoster from "./MoviePoster";
 import MovieRating from "./MovieRating";
 import { TINT_COLOR } from "../constants/Colors";
 
-const Container = styled.View``;
+const Container = styled.View`
+    align-items: center;
+    margin-right: 20px;
+`;
 
 const Title = styled.Text`
     color: ${TINT_COLOR};
+    font-size: 12px;
 `;
 
 const MovieItem = ({ id, posterPhoto, title, voteAvg }) => (
