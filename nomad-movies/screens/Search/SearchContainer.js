@@ -13,20 +13,24 @@ export default class extends React.Component {
         this.setState({ searchTerm: text });
     };
 
+    onSubmitEditing = () => {
+        const { searchTerm } = this.state;
+
+        if (searchTerm !== "") {
+            alert("Searhing");
+            return;
+        }
+    };
+
     render() {
-        const {
-            loading,
-            tvResults,
-            movieResults,
-            searchTerm,
-            handleSearchUpdate
-        } = this.state;
+        const { loading, tvResults, movieResults, searchTerm } = this.state;
         return (
             <SearchPresenter
                 loading={loading}
                 tvResults={tvResults}
                 movieResults={movieResults}
                 searchTerm={searchTerm}
+                onSubmitEditing={this.onSubmitEditing}
                 handleSearchUpdate={this.handleSearchUpdate}
             />
         );

@@ -1,17 +1,26 @@
 import React from "react";
-import { Text } from "react-native";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Loader from "../../components/Loader";
-import { BG_COLOR, TINT_COLOR } from "../../constants/Colors";
+import { BG_COLOR, GREY_COLOR } from "../../constants/Colors";
+import Layout from "../../constants/Layout";
 
 const Container = styled.View`
     background-color: ${BG_COLOR};
     flex: 1;
 `;
 
+const InputContainer = styled.View`
+    align-items: center;
+    margin-vertical: 20px;
+`;
+
 const Input = styled.TextInput`
-    color: ${TINT_COLOR};
+    background-color: rgba(255, 255, 255, 1);
+    width: ${Layout.width / 1.6};
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
 `;
 
 const SearchPresenter = ({
@@ -19,24 +28,30 @@ const SearchPresenter = ({
     tvResults,
     movieResult,
     searchTerm,
+    onSubmitEditing,
     handleSearchUpdate
 }) =>
     loading ? (
         <Loader />
     ) : (
         <Container>
-            <Input
-                value={searchTerm}
-                autoFocus
-                returnKeyType={"search"}
-                onChangeText={handleSearchUpdate}
-            />
+            <InputContainer>
+                <Input
+                    value={searchTerm}
+                    returnKeyType="search"
+                    onChangeText={handleSearchUpdate}
+                    onSubmitEditing={onSubmitEditing}
+                    placeholder="Search movies and tv"
+                    placeholderTextColor={GREY_COLOR}
+                />
+            </InputContainer>
         </Container>
     );
 
 SearchPresenter.propTypes = {
     loading: PropTypes.bool.isRequired,
     handleSearchUpdate: PropTypes.func.isRequired,
+    onSubmitEditing: PropTypes.func.isRequired,
     searchTerm: PropTypes.string,
     tvResults: PropTypes.array,
     movieResult: PropTypes.array
