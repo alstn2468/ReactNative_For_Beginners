@@ -5,7 +5,7 @@ import Loader from "../../components/Loader";
 import MovieItem from "../../components/MovieItem";
 import MovieSlider from "../../components/MovieSlider";
 import Section from "../../components/Section";
-import { BG_COLOR, TINT_COLOR } from "../../constants/Colors";
+import { BG_COLOR } from "../../constants/Colors";
 
 const Container = styled.ScrollView`
     background-color: ${BG_COLOR};
@@ -43,6 +43,7 @@ const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
                                 posterPhoto={movie.poster_path}
                                 title={movie.title}
                                 voteAvg={movie.vote_average}
+                                overview={movie.overview}
                                 horizontal={true}
                             />
                         ))}
