@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import DetailPresenter from "./DetailPresenter";
 
 export default class extends React.Component {
@@ -20,7 +19,8 @@ export default class extends React.Component {
                         backgroundPhoto,
                         title,
                         voteAvg,
-                        overview
+                        overview,
+                        isMovie
                     }
                 }
             }
@@ -31,8 +31,21 @@ export default class extends React.Component {
             backgroundPhoto,
             title,
             voteAvg,
-            overview
+            overview,
+            isMovie,
+            error: null,
+            loading: true
         };
+    }
+
+    async componentDidMount() {
+        let error;
+        try {
+        } catch {
+            error = "Can't get detail information";
+        } finally {
+            this.setState({ loading: false, error });
+        }
     }
 
     render() {
@@ -42,7 +55,9 @@ export default class extends React.Component {
             backgroundPhoto,
             title,
             voteAvg,
-            overview
+            overview,
+            error,
+            loading
         } = this.state;
         return (
             <DetailPresenter
@@ -52,6 +67,8 @@ export default class extends React.Component {
                 title={title}
                 voteAvg={voteAvg}
                 overview={overview}
+                loading={loading}
+                error={error}
             ></DetailPresenter>
         );
     }
