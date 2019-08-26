@@ -1,22 +1,58 @@
 import React from "react";
+import { Text } from "react-native";
 import DetailPresenter from "./DetailPresenter";
 
 export default class extends React.Component {
-    state = {
-        loading: false
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam("title")
+        };
     };
 
-    async componentDidMount() {
-        try {
-        } catch {
-            error = "Can't get detail information.";
-        } finally {
-            this.setState({});
-        }
+    constructor(props) {
+        super(props);
+        const {
+            navigation: {
+                state: {
+                    params: {
+                        id,
+                        posterPhoto,
+                        backgroundPhoto,
+                        title,
+                        voteAvg,
+                        overview
+                    }
+                }
+            }
+        } = props;
+        this.state = {
+            id,
+            posterPhoto,
+            backgroundPhoto,
+            title,
+            voteAvg,
+            overview
+        };
     }
 
     render() {
-        const { loading } = this.state;
-        return <DetailPresenter loading={loading} />;
+        const {
+            id,
+            posterPhoto,
+            backgroundPhoto,
+            title,
+            voteAvg,
+            overview
+        } = this.state;
+        return (
+            <DetailPresenter
+                id={id}
+                posterPhoto={posterPhoto}
+                backgroundPhoto={backgroundPhoto}
+                title={title}
+                voteAvg={voteAvg}
+                overview={overview}
+            ></DetailPresenter>
+        );
     }
 }

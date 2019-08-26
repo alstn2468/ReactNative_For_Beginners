@@ -1,13 +1,23 @@
 import React from "react";
-import { Text } from "react-native";
 import PropTypes from "prop-types";
-import Loader from "../../components/Loader";
+import styled from "styled-components";
 
-const DetailPresenter = ({ loading }) =>
-    loading ? <Loader /> : <Text>Detail</Text>;
+const DetailPresenter = ({
+    id,
+    posterPhoto,
+    backgroundPhoto,
+    title,
+    voteAvg,
+    overview
+}) => null;
 
 DetailPresenter.propTypes = {
-    loading: PropTypes.bool.isRequired
+    id: PropTypes.number.isRequired,
+    voteAvg: PropTypes.number,
+    posterPhoto: PropTypes.string,
+    backgroundPhoto: PropTypes.string,
+    title: PropTypes.string,
+    overview: PropTypes.string
 };
 
 export default DetailPresenter;
