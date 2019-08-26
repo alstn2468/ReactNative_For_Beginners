@@ -26,7 +26,7 @@ const Input = styled.TextInput`
     text-align: center;
 `;
 
-const SearchResults = styled.View`
+const SearchResults = styled.ScrollView`
     margin-top: 20px;
 `;
 
