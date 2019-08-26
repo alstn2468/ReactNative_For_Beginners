@@ -32,6 +32,7 @@ const TVPresenter = ({
                                 posterPhoto={tv.poster_path}
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
+                                isMovie={false}
                             />
                         ))}
                 </Section>
@@ -47,6 +48,7 @@ const TVPresenter = ({
                                 posterPhoto={tv.poster_path}
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
+                                isMovie={false}
                             />
                         ))}
                 </Section>
@@ -62,6 +64,7 @@ const TVPresenter = ({
                                 posterPhoto={tv.poster_path}
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
+                                isMovie={false}
                             />
                         ))}
                 </Section>

@@ -38,7 +38,8 @@ const MovieItem = ({
     title,
     voteAvg,
     horizontal = false,
-    overview
+    overview,
+    isMovie = true
 }) =>
     horizontal ? (
         <HContainer>
@@ -71,7 +72,8 @@ MovieItem.propTypes = {
     posterPhoto: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     overview: PropTypes.string,
-    horizontal: PropTypes.bool
+    horizontal: PropTypes.bool,
+    isMovie: PropTypes.bool
 };
 
 export default MovieItem;
