@@ -54,15 +54,17 @@ const TVPresenter = ({
                 </Section>
             ) : null}
             {popular ? (
-                <Section title="Popular">
+                <Section title="Popular" horizontal={false}>
                     {popular
                         .filter(tv => tv.poster_path !== null)
                         .map(tv => (
                             <MovieItem
                                 key={tv.id}
                                 id={tv.id}
+                                horizontal={true}
                                 posterPhoto={tv.poster_path}
                                 title={tv.name}
+                                overview={tv.overview}
                                 voteAvg={tv.vote_average}
                                 isMovie={false}
                             />

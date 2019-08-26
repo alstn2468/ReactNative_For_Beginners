@@ -3,8 +3,17 @@ import DetailPresenter from "./DetailPresenter";
 
 export default class extends React.Component {
     state = {
-        loading: true
+        loading: false
     };
+
+    async componentDidMount() {
+        try {
+        } catch {
+            error = "Can't get detail information.";
+        } finally {
+            this.setState({});
+        }
+    }
 
     render() {
         const { loading } = this.state;
