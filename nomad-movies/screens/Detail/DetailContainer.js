@@ -1,5 +1,6 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
+import { movies, tv } from "../../api";
 
 export default class extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -39,25 +40,61 @@ export default class extends React.Component {
     }
 
     async componentDidMount() {
-        let error;
+        const { isMovie, id } = this.state;
+        let error, genres, overview, status, date, title, backgroundPhoto;
         try {
-        } catch {
+            if (isMovie) {
+                ({
+                    data: {
+                        genres,
+                        overview,
+                        status,
+                        release_date: date,
+                        backdrop_path: backgroundPhoto
+                    }
+                } = await movies.getMovie(id));
+            } else {
+                ({
+                    data: {
+                        genres,
+                        overview,
+                        status,
+                        first_air_date: date,
+                        title: name,
+                        backdrop_path: backgroundPhoto
+                    }
+                } = await tv.getShow(id));
+            }
+        } catch (error) {
+            console.log(error);
             error = "Can't get detail information";
         } finally {
-            this.setState({ loading: false, error });
+            this.setState({
+                loading: false,
+                genres,
+                backgroundPhoto,
+                overview,
+                status,
+                date,
+                error
+            });
         }
     }
 
     render() {
         const {
+            isMovie,
             id,
             posterPhoto,
             backgroundPhoto,
             title,
             voteAvg,
             overview,
-            error,
-            loading
+            loading,
+            date,
+            status,
+            genres,
+            error
         } = this.state;
         return (
             <DetailPresenter
@@ -68,6 +105,10 @@ export default class extends React.Component {
                 voteAvg={voteAvg}
                 overview={overview}
                 loading={loading}
+                date={date}
+                status={status}
+                isMovie={isMovie}
+                genres={genres}
                 error={error}
             ></DetailPresenter>
         );

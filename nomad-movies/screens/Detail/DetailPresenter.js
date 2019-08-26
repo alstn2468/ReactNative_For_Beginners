@@ -13,7 +13,6 @@ import { Platform } from "react-native";
 
 const Container = styled.ScrollView`
     background-color: ${BG_COLOR};
-    flex: 1;
 `;
 
 const Header = styled.View`
@@ -23,13 +22,11 @@ const Header = styled.View`
 const BgImage = styled.Image`
     width: ${Layout.width};
     height: ${Layout.height / 3.5};
-    opacity: 0.3;
     position: absolute;
     top: 0;
 `;
 
 const Content = styled.View`
-    flex: 1;
     flex-direction: row;
     align-items: flex-end;
     padding-horizontal: 30px;
@@ -52,7 +49,7 @@ const MainContent = styled.View`
     margin-top: 25px;
 `;
 
-const Overview = styled.Text`
+const ContentValue = styled.Text`
     width: 80%;
     color: ${TINT_COLOR};
     font-size: 12px;
@@ -65,14 +62,30 @@ const ContentTitle = styled.Text`
     margin-bottom: 10px;
 `;
 
+const DataContainer = styled.View`
+    margin-bottom: 10px;
+`;
+
+const Genres = styled.Text`
+    color: ${TINT_COLOR};
+    font-size: 12px;
+    margin-top: 10px;
+    width: 95%;
+`;
+
 const DetailPresenter = ({
+    isMovie,
+    id,
     posterPhoto,
     backgroundPhoto,
     title,
     voteAvg,
     overview,
-    error,
-    loading
+    loading,
+    date,
+    status,
+    genres,
+    error
 }) => (
     <Container>
         <Header>
@@ -96,19 +109,48 @@ const DetailPresenter = ({
                                 : title}
                         </Title>
                         <MovieRating inSlide={true} votes={voteAvg} />
+                        {genres ? (
+                            <Genres>
+                                {genres.map((genre, index) =>
+                                    index === genres.length - 1
+                                        ? genre.name
+                                        : `${genre.name} / `
+                                )}
+                            </Genres>
+                        ) : null}
                     </Column>
                 </Content>
             </LinearGradient>
         </Header>
         <MainContent>
             {overview ? (
-                <>
+                <DataContainer>
                     <ContentTitle>Overview</ContentTitle>
-                    <Overview>{overview}</Overview>
-                </>
+                    <ContentValue>{overview}</ContentValue>
+                </DataContainer>
+            ) : null}
+            {status ? (
+                <DataContainer>
+                    <ContentTitle>Status</ContentTitle>
+                    <ContentValue>{status}</ContentValue>
+                </DataContainer>
+            ) : null}
+            {date ? (
+                <DataContainer>
+                    <ContentTitle>
+                        {isMovie ? "Realease Date" : "First Episode"}
+                    </ContentTitle>
+                    <ContentValue>{date}</ContentValue>
+                </DataContainer>
             ) : null}
             {loading ? <Loader /> : null}
-            {error ? <Message color="#e74c3c" text={error} /> : null}
+            {error ? (
+                <DataContainer>
+                    <ContentValue>
+                        <Message color="#e74c3c" text={error} />
+                    </ContentValue>
+                </DataContainer>
+            ) : null}
         </MainContent>
     </Container>
 );
@@ -121,7 +163,11 @@ DetailPresenter.propTypes = {
     title: PropTypes.string.isRequired,
     overview: PropTypes.string,
     error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    isMovie: PropTypes.bool.isRequired,
+    status: PropTypes.string,
+    date: PropTypes.string,
+    genres: PropTypes.array
 };
 
 export default DetailPresenter;
