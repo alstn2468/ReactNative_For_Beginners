@@ -29,7 +29,9 @@ const TVPresenter = ({
                             <MovieItem
                                 key={tv.id}
                                 id={tv.id}
-                                posterPhoto={tv.poster_path}
+                                posterPhoto={
+                                    tv.poster_path ? tv.poster_path : null
+                                }
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
                                 isMovie={false}
@@ -45,7 +47,9 @@ const TVPresenter = ({
                             <MovieItem
                                 key={tv.id}
                                 id={tv.id}
-                                posterPhoto={tv.poster_path}
+                                posterPhoto={
+                                    tv.poster_path ? tv.poster_path : null
+                                }
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
                                 isMovie={false}
@@ -62,7 +66,9 @@ const TVPresenter = ({
                                 key={tv.id}
                                 id={tv.id}
                                 horizontal={true}
-                                posterPhoto={tv.poster_path}
+                                posterPhoto={
+                                    tv.poster_path ? tv.poster_path : null
+                                }
                                 title={tv.name}
                                 overview={tv.overview}
                                 voteAvg={tv.vote_average}

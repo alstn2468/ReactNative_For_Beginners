@@ -158,7 +158,7 @@ const DetailPresenter = ({
 DetailPresenter.propTypes = {
     id: PropTypes.number.isRequired,
     voteAvg: PropTypes.number,
-    posterPhoto: PropTypes.string.isRequired,
+    posterPhoto: PropTypes.string,
     backgroundPhoto: PropTypes.string,
     title: PropTypes.string.isRequired,
     overview: PropTypes.string,

@@ -58,36 +58,40 @@ const SearchPresenter = ({
                     {movieResults ? (
                         movieResults.length > 0 ? (
                             <Section title="Movie Results">
-                                {movieResults
-                                    .filter(movie => movie.poster_path !== null)
-                                    .map(movie => (
-                                        <MovieItem
-                                            key={movie.id}
-                                            id={movie.id}
-                                            posterPhoto={movie.poster_path}
-                                            title={movie.title}
-                                            overview={movie.overview}
-                                            voteAvg={movie.vote_average}
-                                        />
-                                    ))}
+                                {movieResults.map(movie => (
+                                    <MovieItem
+                                        key={movie.id}
+                                        id={movie.id}
+                                        posterPhoto={
+                                            movie.poster_path
+                                                ? movie.poster_path
+                                                : null
+                                        }
+                                        title={movie.title}
+                                        overview={movie.overview}
+                                        voteAvg={movie.vote_average}
+                                    />
+                                ))}
                             </Section>
                         ) : null
                     ) : null}
                     {tvResults ? (
                         tvResults.length > 0 ? (
                             <Section title="TV Results">
-                                {tvResults
-                                    .filter(tv => tv.poster_path !== null)
-                                    .map(tv => (
-                                        <MovieItem
-                                            key={tv.id}
-                                            id={tv.id}
-                                            posterPhoto={tv.poster_path}
-                                            title={tv.name}
-                                            voteAvg={tv.vote_average}
-                                            isMovie={false}
-                                        />
-                                    ))}
+                                {tvResults.map(tv => (
+                                    <MovieItem
+                                        key={tv.id}
+                                        id={tv.id}
+                                        posterPhoto={
+                                            tv.poster_path
+                                                ? tv.poster_path
+                                                : null
+                                        }
+                                        title={tv.name}
+                                        voteAvg={tv.vote_average}
+                                        isMovie={false}
+                                    />
+                                ))}
                             </Section>
                         ) : null
                     ) : null}

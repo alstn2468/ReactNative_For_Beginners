@@ -10,11 +10,17 @@ const Image = styled.Image`
 `;
 
 const MoviePoster = ({ path }) => (
-    <Image source={{ uri: makePhotoUrl(path) }} />
+    <Image
+        source={
+            path !== null
+                ? { uri: makePhotoUrl(path) }
+                : require("../assets/noPosterSmall.png")
+        }
+    />
 );
 
 MoviePoster.propTypes = {
-    path: PropTypes.string.isRequired
+    path: PropTypes.string
 };
 
 export default MoviePoster;

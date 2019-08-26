@@ -25,7 +25,9 @@ const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
                             <MovieItem
                                 key={movie.id}
                                 id={movie.id}
-                                posterPhoto={movie.poster_path}
+                                posterPhoto={
+                                    movie.poster_path ? movie.poster_path : null
+                                }
                                 title={movie.title}
                                 voteAvg={movie.vote_average}
                             />
@@ -40,7 +42,9 @@ const MoviesPresenter = ({ loading, upcoming, popular, nowPlaying, error }) =>
                             <MovieItem
                                 key={movie.id}
                                 id={movie.id}
-                                posterPhoto={movie.poster_path}
+                                posterPhoto={
+                                    movie.poster_path ? movie.poster_path : null
+                                }
                                 title={movie.title}
                                 voteAvg={movie.vote_average}
                                 overview={movie.overview}

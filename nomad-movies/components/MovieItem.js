@@ -90,7 +90,7 @@ const MovieItem = ({
 MovieItem.propTypes = {
     id: PropTypes.number.isRequired,
     voteAvg: PropTypes.number.isRequired,
-    posterPhoto: PropTypes.string.isRequired,
+    posterPhoto: PropTypes.string,
     title: PropTypes.string.isRequired,
     overview: PropTypes.string,
     horizontal: PropTypes.bool,

@@ -15,25 +15,25 @@ export default class extends React.Component {
             navigation: {
                 state: {
                     params: {
+                        isMovie,
                         id,
                         posterPhoto,
                         backgroundPhoto,
                         title,
                         voteAvg,
-                        overview,
-                        isMovie
+                        overview
                     }
                 }
             }
         } = props;
         this.state = {
+            isMovie,
             id,
             posterPhoto,
             backgroundPhoto,
             title,
             voteAvg,
             overview,
-            isMovie,
             error: null,
             loading: true
         };
@@ -41,7 +41,8 @@ export default class extends React.Component {
 
     async componentDidMount() {
         const { isMovie, id } = this.state;
-        let error, genres, overview, status, date, title, backgroundPhoto;
+        let error, genres, overview, status, date, backgroundPhoto;
+
         try {
             if (isMovie) {
                 ({
@@ -67,16 +68,19 @@ export default class extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            error = "Can't get detail information";
+            error = "Can't get detail information.";
         } finally {
-            this.setState({
-                loading: false,
-                genres,
-                backgroundPhoto,
-                overview,
-                status,
-                date,
-                error
+            this.setState(prev => {
+                return {
+                    ...prev,
+                    loading: false,
+                    genres,
+                    backgroundPhoto,
+                    overview,
+                    status,
+                    date,
+                    error
+                };
             });
         }
     }
@@ -96,6 +100,7 @@ export default class extends React.Component {
             genres,
             error
         } = this.state;
+
         return (
             <DetailPresenter
                 id={id}
@@ -110,7 +115,7 @@ export default class extends React.Component {
                 isMovie={isMovie}
                 genres={genres}
                 error={error}
-            ></DetailPresenter>
+            />
         );
     }
 }
