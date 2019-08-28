@@ -1,15 +1,14 @@
 import React from "react";
+import { Platform } from "react-native";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import Layout from "../../constants/Layout";
 import { LinearGradient } from "expo-linear-gradient";
-import { BG_COLOR, TINT_COLOR } from "../../constants/Colors";
-import makePhotoUrl from "../../utils/makePhotoUrl";
+import styled from "styled-components";
 import MoviePoster from "../../components/MoviePoster";
+import { BG_COLOR, TINT_COLOR } from "../../constants/Colors";
+import Layout from "../../constants/Layout";
+import makePhotoUrl from "../../utils/makePhotoUrl";
 import MovieRating from "../../components/MovieRating";
 import Loader from "../../components/Loader";
-import Message from "../../components/Message";
-import { Platform } from "react-native";
 
 const Container = styled.ScrollView`
     background-color: ${BG_COLOR};
@@ -28,19 +27,20 @@ const BgImage = styled.Image`
 
 const Content = styled.View`
     flex-direction: row;
+    width: 80%;
     align-items: flex-end;
-    padding-horizontal: 30px;
+    padding-horizontal: 20px;
     height: ${Layout.height / 3.5};
 `;
 
 const Column = styled.View`
-    margin-left: 20px;
+    margin-left: 30px;
 `;
 
 const Title = styled.Text`
     color: ${TINT_COLOR};
-    font-weight: 600;
     font-size: 18px;
+    font-weight: 600;
     margin-bottom: 10px;
 `;
 
@@ -49,16 +49,16 @@ const MainContent = styled.View`
     margin-top: 25px;
 `;
 
+const ContentTitle = styled.Text`
+    color: ${TINT_COLOR};
+    font-weight: 600;
+    margin-bottom: 10px;
+`;
+
 const ContentValue = styled.Text`
     width: 80%;
     color: ${TINT_COLOR};
     font-size: 12px;
-    margin-bottom: 10px;
-`;
-
-const ContentTitle = styled.Text`
-    color: ${TINT_COLOR};
-    font-weight: 600;
     margin-bottom: 10px;
 `;
 
@@ -74,16 +74,15 @@ const Genres = styled.Text`
 `;
 
 const DetailPresenter = ({
-    isMovie,
-    id,
     posterPhoto,
     backgroundPhoto,
     title,
     voteAvg,
-    overview,
     loading,
-    date,
+    overview,
     status,
+    date,
+    isMovie,
     genres,
     error
 }) => (
@@ -103,11 +102,7 @@ const DetailPresenter = ({
                 <Content>
                     <MoviePoster path={posterPhoto} />
                     <Column>
-                        <Title>
-                            {title.length > 20
-                                ? `${title.substring(0, 17)}...`
-                                : title}
-                        </Title>
+                        <Title>{title}</Title>
                         <MovieRating inSlide={true} votes={voteAvg} />
                         {genres ? (
                             <Genres>
@@ -157,16 +152,16 @@ const DetailPresenter = ({
 
 DetailPresenter.propTypes = {
     id: PropTypes.number.isRequired,
-    voteAvg: PropTypes.number,
-    posterPhoto: PropTypes.string,
-    backgroundPhoto: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    overview: PropTypes.string,
-    error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
     isMovie: PropTypes.bool.isRequired,
+    posterPhoto: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    backgroundPhoto: PropTypes.string,
+    overview: PropTypes.string,
     status: PropTypes.string,
     date: PropTypes.string,
+    error: PropTypes.string,
+    voteAvg: PropTypes.number,
     genres: PropTypes.array
 };
 

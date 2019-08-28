@@ -42,7 +42,6 @@ export default class extends React.Component {
     async componentDidMount() {
         const { isMovie, id } = this.state;
         let error, genres, overview, status, date, backgroundPhoto;
-
         try {
             if (isMovie) {
                 ({
@@ -70,17 +69,14 @@ export default class extends React.Component {
             console.log(error);
             error = "Can't get detail information.";
         } finally {
-            this.setState(prev => {
-                return {
-                    ...prev,
-                    loading: false,
-                    genres,
-                    backgroundPhoto,
-                    overview,
-                    status,
-                    date,
-                    error
-                };
+            this.setState({
+                loading: false,
+                genres,
+                backgroundPhoto,
+                overview,
+                status,
+                date,
+                error
             });
         }
     }
@@ -100,7 +96,6 @@ export default class extends React.Component {
             genres,
             error
         } = this.state;
-
         return (
             <DetailPresenter
                 id={id}
