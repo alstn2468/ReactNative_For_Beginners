@@ -11,8 +11,6 @@ const View = styled.View`
     height: ${SWIPER_HEIGHT};
 `;
 
-const Text = styled.Text``;
-
 const MovieSlider = ({ movies }) =>
     movies ? (
         <Swiper
