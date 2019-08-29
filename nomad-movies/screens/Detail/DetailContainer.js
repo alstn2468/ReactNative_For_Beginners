@@ -95,7 +95,7 @@ export default class extends React.Component {
             genres,
             error
         } = this.state;
-        console.log(this.state);
+
         return (
             <DetailPresenter
                 id={id}
