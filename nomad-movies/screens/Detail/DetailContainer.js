@@ -65,8 +65,7 @@ export default class extends React.Component {
                     }
                 } = await tv.getShow(id));
             }
-        } catch (error) {
-            console.log(error);
+        } catch {
             error = "Can't get detail information.";
         } finally {
             this.setState({
@@ -96,6 +95,7 @@ export default class extends React.Component {
             genres,
             error
         } = this.state;
+        console.log(this.state);
         return (
             <DetailPresenter
                 id={id}

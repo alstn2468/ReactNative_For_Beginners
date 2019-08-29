@@ -9,6 +9,7 @@ import Layout from "../../constants/Layout";
 import makePhotoUrl from "../../utils/makePhotoUrl";
 import MovieRating from "../../components/MovieRating";
 import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 
 const Container = styled.ScrollView`
     background-color: ${BG_COLOR};
@@ -70,7 +71,7 @@ const Genres = styled.Text`
     color: ${TINT_COLOR};
     font-size: 12px;
     margin-top: 10px;
-    width: 95%;
+    width: 80%;
 `;
 
 const DetailPresenter = ({
@@ -117,36 +118,35 @@ const DetailPresenter = ({
                 </Content>
             </LinearGradient>
         </Header>
-        <MainContent>
-            {overview ? (
-                <DataContainer>
-                    <ContentTitle>Overview</ContentTitle>
-                    <ContentValue>{overview}</ContentValue>
-                </DataContainer>
-            ) : null}
-            {status ? (
-                <DataContainer>
-                    <ContentTitle>Status</ContentTitle>
-                    <ContentValue>{status}</ContentValue>
-                </DataContainer>
-            ) : null}
-            {date ? (
-                <DataContainer>
-                    <ContentTitle>
-                        {isMovie ? "Realease Date" : "First Episode"}
-                    </ContentTitle>
-                    <ContentValue>{date}</ContentValue>
-                </DataContainer>
-            ) : null}
-            {loading ? <Loader /> : null}
-            {error ? (
-                <DataContainer>
-                    <ContentValue>
-                        <Message color="#e74c3c" text={error} />
-                    </ContentValue>
-                </DataContainer>
-            ) : null}
-        </MainContent>
+        {error ? (
+            <DataContainer>
+                <Message color="#e74c3c" text={error} />
+            </DataContainer>
+        ) : (
+            <MainContent>
+                {overview ? (
+                    <DataContainer>
+                        <ContentTitle>Overview</ContentTitle>
+                        <ContentValue>{overview}</ContentValue>
+                    </DataContainer>
+                ) : null}
+                {status ? (
+                    <DataContainer>
+                        <ContentTitle>Status</ContentTitle>
+                        <ContentValue>{status}</ContentValue>
+                    </DataContainer>
+                ) : null}
+                {date ? (
+                    <DataContainer>
+                        <ContentTitle>
+                            {isMovie ? "Realease Date" : "First Episode"}
+                        </ContentTitle>
+                        <ContentValue>{date}</ContentValue>
+                    </DataContainer>
+                ) : null}
+                {loading ? <Loader /> : null}
+            </MainContent>
+        )}
     </Container>
 );
 
