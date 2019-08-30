@@ -1,7 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { ActivityIndicator, Dimensions } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
+import styled from "styled-components";
+
+const { width, height } = Dimensions.get("window");
+
+const CenterView = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: cornflowerblue;
+`;
+
+const Text = styled.Text`
+    color: white;
+    font-size: 22px;
+`;
 
 export default class App extends React.Component {
     state = {
@@ -10,7 +25,6 @@ export default class App extends React.Component {
 
     componentDidMount = async () => {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
-
         if (status === "granted") {
             this.setState({ hasPermission: true });
         } else {
@@ -21,20 +35,31 @@ export default class App extends React.Component {
     render() {
         const { hasPermission } = this.state;
 
-        if (hasPermission) {
+        if (hasPermission === true) {
             return (
-                <View>
-                    <Text>Has Permission</Text>
-                </View>
+                <CenterView>
+                    <Camera
+                        style={{
+                            width: width - 40,
+                            height: height / 1.5,
+                            borderRadius: 10,
+                            overflow: "hidden"
+                        }}
+                    />
+                </CenterView>
             );
         } else if (hasPermission === false) {
             return (
-                <View>
+                <CenterView>
                     <Text>Don't have Permission for this App.</Text>
-                </View>
+                </CenterView>
             );
         } else {
-            return <ActivityIndicator />;
+            return (
+                <CenterView>
+                    <ActivityIndicator color="white" size={1} />
+                </CenterView>
+            );
         }
     }
 }
