@@ -19,6 +19,6 @@ iOS / Android Movie Discovery App built with React Native.
 
 ## Smiley Cam
 
-ios / Android App that takes photo when you smile.
+ios / Android App that takes photos only when you smile.
 
 ### Demo Image
