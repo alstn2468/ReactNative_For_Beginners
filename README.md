@@ -8,7 +8,11 @@ iOS / Android Movie Discovery App built with React Native.
 
 ### Screens
 
--   [ ] Movies
+-   [x] Movies
 -   [x] TV Shows
--   [ ] Search
--   [ ] Detail
+-   [x] Search
+-   [x] Detail
+
+### Demo Image
+
+![Nomad Movies Demo](demo/nomad-movies-demo.gif)

@@ -35,7 +35,7 @@ const Content = styled.View`
 `;
 
 const Column = styled.View`
-    margin-left: 30px;
+    margin-left: 20px;
 `;
 
 const Title = styled.Text`
@@ -71,7 +71,7 @@ const Genres = styled.Text`
     color: ${TINT_COLOR};
     font-size: 12px;
     margin-top: 10px;
-    width: 95%;
+    width: 80%;
 `;
 
 const DetailPresenter = ({

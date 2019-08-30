@@ -24,7 +24,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nomadCoder.nomadMovies"
+    },
+    "description": "⚛︎ Popcorn Time Application with React Native",
+    "githubUrl": "https://github.com/alstn2468/ReactNative_For_Beginners"
   }
 }
