@@ -1,6 +1,6 @@
 # React Native For Beginners
 
-Learning React Native by building a Movie Discovery App.
+Learning React Native by building a Movie Discovery App & Smiley Camera App.
 
 ## Nomad Movies
 
@@ -16,3 +16,9 @@ iOS / Android Movie Discovery App built with React Native.
 ### Demo Image
 
 ![Nomad Movies Demo](demo/nomad-movies-demo.gif)
+
+## Smiley Cam
+
+ios / Android App that takes photo when you smile.
+
+### Demo Image
