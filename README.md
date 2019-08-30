@@ -23,4 +23,4 @@ ios / Android App that takes photos only when you smile.
 
 ### Demo Image
 
-![Smiley Cam Demo](demo/smiley-cam-demo.gif)
+![Smiley Cam Demo](demo/smiley-cam-demo.png)
