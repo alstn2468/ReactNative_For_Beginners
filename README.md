@@ -1,6 +1,6 @@
 # React Native For Beginners
 
-Learning React Native by building a Movie Discovery App & Smiley Camera App.
+Learning React Native by building a Movie Discovery App & Smiley Camera App with [Nomad Coder](https://academy.nomadcoders.co/courses/category/KR).
 
 ## Nomad Movies
 
